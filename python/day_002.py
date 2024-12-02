@@ -26,20 +26,17 @@ class Reports:
 def is_safe(levels):
     # i can be a smart ass about this
     # update : this was a horrible idea, the Problem Dampener ruined this algorithm
-    # are we ascending or descending
-    is_ascending = levels[1] - levels[-1] < 0 # this will only fail if the entire thing is just the same number
-    # but if it's the same number, it's unsafe anyway
+    # now we're simply checking if it's sorted one way or another and then
+    # checking to see if everything else works
+
     is_sorted = all( levels[i] <= levels[i+1] for i in range(len(levels)-1)) or all(levels[i] >= levels[i+1] for i in range(len(levels)-1))
 
     if not is_sorted:
         return False
 
-    # the bullshit way to deal with the Problem Dampener thing is to keep 
-    # removing one element from the list and checking if any one of them 
-    # keeps it safe
-    if is_sorted:
-        return all( 1 <= abs(levels[i] - levels[i-1]) <= 3 for i in range(1, len(levels))) and \
-               all( 1 <= abs(levels[i+1] - levels[i]) <= 3 for i in range(len(levels) - 1))
+
+    return all( 1 <= abs(levels[i] - levels[i-1]) <= 3 for i in range(1, len(levels))) and \
+           all( 1 <= abs(levels[i+1] - levels[i]) <= 3 for i in range(len(levels) - 1))
 
 def is_safe_problem_dampener(levels):
     # i'm gonna use the function that is already kind of built to 
