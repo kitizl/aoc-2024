@@ -14,7 +14,6 @@ class Multiplier:
         raw_data = ""
         with open(filename, "r") as f:
             raw_data = f.read()
-        # for some reason it's being weird about the \n in the input file
         return raw_data.replace("\n","")
     
     def get_multiplier(self):
@@ -36,8 +35,8 @@ class Multiplier:
         pattern = r"do\(\)(.*?)don\'t\(\)"
         enabled_string = re.findall(pattern, "do()" + self.raw_data + "don't()")
         multipliers = []
-
-        multipliers = [re.findall(r"mul\((\d+),(\d+)\)", match)[0] for match in enabled_string]
+        for match in enabled_string:
+            multipliers += re.findall(r"mul\((\d+),(\d+)\)", match)
         return multipliers
 
     
