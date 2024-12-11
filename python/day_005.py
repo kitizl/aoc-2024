@@ -36,7 +36,7 @@ def passes_rules(page_row, ordering_rules):
             case (left, right):
                 if page_row.find(left) == -1 or page_row.find(right) == -1:
                     continue
-                elif page_row.find(left) > page_row.rfind(right):
+                elif page_row.find(left) > page_row.find(right):
                     return False
     return True
 
@@ -68,3 +68,8 @@ if __name__ == "__main__":
 
     man = Parser("../data/day_005.txt")
     print(find_answer(man.updated_pages, man.page_ordering_rules))
+    # sadly, my data structures were not well thought out to do the second part
+    # maybe i'll get back to this later
+
+    # i can turn page_row into a list of ints, and then switch to
+    # list().index(num) for checking the page order (check membership also first)
