@@ -61,3 +61,14 @@ def hstack(x1, x2):
 
 def vstack(x1, x2):
     return x1 + x2
+
+"""
+Turn a string into a 2d list
+"""
+
+def string_to_list(string : str, sep : str="") -> list[list[str]]:
+    rows = string.strip().split("\n")
+    if sep == "":
+        return [list(elem) for elem in rows]
+    else:
+        return [elem.split(sep) for elem in rows]
