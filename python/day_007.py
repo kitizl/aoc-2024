@@ -47,11 +47,15 @@ def evaluate_expression(operands, operations):
     infix notation, you can write
     (((m1 @ m2) @ m3) @ m4) ...
 
-    But we can use the fact that this can still commute overall, and rewrite to
-    (m4 @ (m 3 @ (m2 @ m1)))
-
     If I was writing in a language better built for recursion I'd do that, but
     I have a more braindead idea than that.
+
+    By initializing an accumulator at 0 and grafting [add] as our first
+    operation, we can simply let our accumulator run through the entire thing
+    with each operator operating on the accumalator and the next operand.
+
+    I'm sure there's a more "pythonic" way to do this, but I can look that up
+    later.
     """
     acc = 0
     operators = [add] + list(operations) # the first step is initializing the acc
